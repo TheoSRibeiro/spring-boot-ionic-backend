@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.teophiloribeiro</groupId>
-	<artifactId>curso</artifactId>
+	<artifactId>sping-boot-ionic-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>curso</name>
+	<name>sping-boot-ionic-backend</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
