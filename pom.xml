@@ -85,7 +85,13 @@
 
 		
 		
-	</dependencies>
+	
+   <dependency>
+     <groupId>org.dynjs</groupId>
+     <artifactId>dynjs</artifactId>
+     <version>0.1.1</version>
+   </dependency>
+ </dependencies>
 
 	<build>
 		<plugins>

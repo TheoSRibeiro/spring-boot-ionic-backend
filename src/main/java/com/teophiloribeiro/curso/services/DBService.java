@@ -126,10 +126,10 @@ public class DBService {
 		est2.getCidades().addAll(Arrays.asList(c2,c3));
 		
 		//CLIENTE E ENDERECO
-		Cliente cli1 = new Cliente(null, "Ana Maria", "an@yahoo.com", "36378912377", TipoCliente.PESSOAFISICA, pe.encode("123"));
+		Cliente cli1 = new Cliente(null, "Ana Maria", "ana@yahoo.com", "36378912377", TipoCliente.PESSOAFISICA, pe.encode("123"));
 		cli1.getTelefones().addAll(Arrays.asList("27363323", "93838393"));
 		
-		Cliente cli2 = new Cliente(null, "Juca", "juca@bol.com.br", "50748456023", TipoCliente.PESSOAFISICA, pe.encode("321"));
+		Cliente cli2 = new Cliente(null, "Juca", "juca@bol.com.br", "50748456023", TipoCliente.PESSOAFISICA, pe.encode("123"));
 		cli2.addPerfil(Perfil.ADMIN);
 		cli2.getTelefones().addAll(Arrays.asList("53224456", "988886542"));
 
