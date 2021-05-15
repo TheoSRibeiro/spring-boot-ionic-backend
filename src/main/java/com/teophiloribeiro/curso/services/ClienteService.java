@@ -4,15 +4,6 @@ import java.net.URI;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort.Direction;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
 import com.teophiloribeiro.curso.domain.Cidade;
 import com.teophiloribeiro.curso.domain.Cliente;
 import com.teophiloribeiro.curso.domain.Endereco;
@@ -26,6 +17,15 @@ import com.teophiloribeiro.curso.security.UserSS;
 import com.teophiloribeiro.curso.services.exceptions.AuthorizationException;
 import com.teophiloribeiro.curso.services.exceptions.DataIntegrityException;
 import com.teophiloribeiro.curso.services.exceptions.ObjectNotFoundException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 //CAMADA DE SERVICO
 //faz a consulta no repositorio
@@ -115,7 +115,20 @@ public class ClienteService {
 	}
 	
 	public URI uploadProfilePicture(MultipartFile multipartFile){
-		return s3Service.uploadFile(multipartFile);
+		
+		UserSS user = UserService.authenticated();
+		
+		if(user==null){
+			throw new AuthorizationException("Acesso Negado!");
+		}
+
+		URI uri = s3Service.uploadFile(multipartFile);
+		
+		Optional<Cliente> cli = repo.findById(user.getId());
+		cli.orElse(null).setImageURL(uri.toString());
+		repo.save(cli.orElse(null));
+
+		return uri;
 	}
 	
 	
