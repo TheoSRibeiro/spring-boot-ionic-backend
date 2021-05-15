@@ -12,8 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CursoApplication implements CommandLineRunner{
 	
-	@Autowired
-	private S3Service s3Service;
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(CursoApplication.class, args);
@@ -22,7 +21,7 @@ public class CursoApplication implements CommandLineRunner{
 	//Metodo para instanciar o BD com as categorias e produtos
 	@Override
 	public void run(String... args) throws Exception {
-		s3Service.uploadFile("D:\\Imagens\\bios.png");
+
 	}
 	
 
